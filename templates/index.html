@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Code Executer</title>
+    <style>
+        /* General reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6A11CB, #2575FC);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 800px;
+            height: 250px;
+            padding: 10px;
+            background-color: #282c34;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 8px;
+            font-size: 1em;
+            resize: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.2em;
+            background-color: #2575FC;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #6A11CB;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        pre {
+            width: 100%;
+            max-width: 800px;
+            background-color: #2d2d2d;
+            padding: 15px;
+            border-radius: 8px;
+            color: #f8f8f2;
+            font-size: 1em;
+            overflow-x: auto;
+            word-wrap: break-word;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1em;
+            color: #fff;
+            text-align: center;
+            opacity: 0.8;
+            width: 100%;
+        }
+
+        footer p {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Code Executer</h1>
+    <textarea id="codeEditor" placeholder="Write your Python code here..."></textarea>
+    <br>
+    <button id="runButton">Run</button>
+    <h2>Output</h2>
+    <pre id="output"></pre>
+    <h2>Errors</h2>
+    <pre id="errors"></pre>
+
+    <footer>
+        <p>Designed by Atharv Suryavanshi</p>
+    </footer>
+
+    <script>
+        document.getElementById("runButton").addEventListener("click", () => {
+            const code = document.getElementById("codeEditor").value;
+
+            fetch("http://127.0.0.1:5000/run", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ code: code }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("output").textContent = data.output || "No output.";
+                    document.getElementById("errors").textContent = data.error || "No errors.";
+                })
+                .catch(error => {
+                    document.getElementById("errors").textContent = "Error: " + error.message;
+                });
+        });
+    </script>
+</body>
+</html>
