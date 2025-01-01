@@ -1,5 +1,5 @@
 Overview
-The Python Code Runner is a simple yet powerful web-based tool designed to execute Python scripts directly from your browser.
+The online Python Compiler is a simple yet powerful web-based tool designed to execute Python scripts directly from your browser.
 This project is built using Flask for the backend and a dynamic HTML interface for the frontend, offering an intuitive and responsive user experience.
 It's an excellent solution for running and testing Python code quickly without needing to set up a local development environment.
 
@@ -10,7 +10,7 @@ Interactive UI: A clean, modern interface with a code editor, output display, an
 Backend Integration: Uses Flask for handling requests and running Python scripts securely.
 Real-Time Updates: Outputs and errors are displayed in real-time as the code is executed.
 
-Use of Judge0 API in the Python Code Runner
+Use of Judge0 API in the online Python Compiler
 The Judge0 API is a versatile and efficient API used for compiling and running code in various programming languages. 
 In this project, the Judge0 API has been integrated to execute Python code and provide the output or errors directly on the web interface.
 
@@ -22,7 +22,7 @@ Retrieve Output or Errors: After execution, the API returns the program's output
 Handle Resource Constraints: The API ensures that the code execution adheres to CPU time and memory limits, preventing excessive resource usage.
 
 Project Structure:
-python-code-compiler/
+online-python-compiler/
 │
 ├── app.py                # Backend logic using Flask
 ├── templates/
